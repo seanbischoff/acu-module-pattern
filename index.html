@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery UI Example Page</title>
+	<link href="jquery-ui-custom/jquery-ui.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+<H1>AlertConfirmUtility</h1>
+<p>This is a widget to create "in page" modals simulating alert() or confirm() windows. So it's really two widgets, packaged into one.</p>
+
+<p>There are pros and cons to doing this! Be sure you read the README and understand the Impact of such a switch. Really.</p>
+
+<p>Your coding pattern must be modified to support these. If you still want to switch, continue with the Instructions.</p>
+
+<h2 class="demoHeaders">Links to simulate programmatically opening the dialog in different states.</h2>
+<p>The Argument is a config object.</p>
+<p class="acu-buttons">
+	
+	<a href="#" id="dialog-link-error" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>Open Error</a>
+
+	<a href="#" id="dialog-link-success" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>Open Success</a>
+
+	<a href="#" id="dialog-link-warning" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>Open Warning</a>
+
+	<a href="#" id="dialog-link-confirm" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>Open Confirm</a>
+
+</p>
+
+<h2 class="demoHeaders">Simplest alert</h2>
+<p>The argument is a string.</p>
+<p class="acu-buttons">
+	<a href="#" id="dialog-link-alert" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>Simple Alert</a>
+
+</p>
+
+<!-- ui-dialog -->
+<div id="dialog" title="Dialog Title"></div>
+
+
+<script src="jquery-ui-custom/external/jquery/jquery.js"></script>
+<script src="jquery-ui-custom/jquery-ui.js"></script>
+<script src="acu.js"></script>
+<script>
+
+var myPageObject = {};
+
+myPageObject.confirmYes = function(){
+	console.log("Handle the confirm Yes choice (call another function and do something).");
+};
+myPageObject.confirmNo = function(){
+	console.log("Handle the confirm No choice.");
+};
+
+
+myPageObject.myAJAXsuccessHandler = function(response){
+	//This is your function that determines whether to popup an alert (error, success, or warning state) or a confirm
+	var rObj = $.parseJSON(response);
+	if(rObj.result.toLowerCase() == "confirm"){
+		//we need to add some context specific confirm handler methods
+		rObj.yesHandler = myPageObject.confirmYes;
+		rObj.noHandler = myPageObject.confirmNo;
+	}
+	acu.initACUDialog(rObj); //replaces alert(msg) and confirm(msg) calls
+	/* 
+	In the case of a confirm, we would have had more script here to work with the returned boolean. 
+	But instead this thread ends here, and the user's choice will fire either a Yes or No handler function
+	*/
+}
+
+$(document).ready(function(){
+	
+	// Links to simulate programmatically opening the dialog in different states
+	
+	//Example. Your process made an AJAX call, and it's response success handler is then called...
+	$( "#dialog-link-error" ).click(function( event ) {
+		//Example: server encountered an error while attempting to service the AJAX request
+		myPageObject.myAJAXsuccessHandler('{"result":"Error", "msg":"An error occurred. Please try again later"}');
+		event.preventDefault();
+	});
+	
+	$( "#dialog-link-success" ).click(function( event ) {
+		//Example. Save successfully completed.
+		myPageObject.myAJAXsuccessHandler('{"result":"Success", "msg":"Your action was successfully completed."}');
+		event.preventDefault();
+	});
+
+	$( "#dialog-link-warning" ).click(function( event ) {
+		//Example: User given warning, no choices possible - such as unable to complete action due to conflicts, invalid or unauthorized request, etc.
+		myPageObject.myAJAXsuccessHandler('{"result":"Warning", "msg":"Action denied, aborted."}');
+		event.preventDefault();
+	});
+	
+	$( "#dialog-link-confirm" ).click(function( event ) {
+		//Example: server process needs another user decision whether to proceed or not. Such as to ignore conflict or accept cascaded conseqences (e.g. an object deletion extends to other, dependent objects)
+		event.preventDefault();
+		myPageObject.myAJAXsuccessHandler('{"result":"Confirm", "msg":"There are dependencies, are you sure you wish to continue?"}');
+	});
+
+	$( "#dialog-link-alert" ).click(function( event ) {
+		//Example:  Just a simple alert is needed, so for convenience we allow just a string argument.
+		//   The CSS class .acu-alert is neutral grey, but could be switched to one of the other visual states as desired
+		acu.initACUDialog("Just a simple alert. Move along people, nothing to see here.");
+		event.preventDefault();
+	});
+	
+
+});
+
+
+</script>
+</body>
+</html>

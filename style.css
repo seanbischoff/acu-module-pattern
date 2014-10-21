@@ -1,0 +1,73 @@
+	/* Index page CSS */	
+	body{
+		font: 72.5% Verdana,Arial, sans-serif;
+		margin: 50px;
+	}
+	h1,h2 {
+		"Trebuchet MS", sans-serif;
+	}
+	.demoHeaders {
+		margin-top: 2em;
+	}
+	#icons {
+		margin: 0;
+		padding: 0;
+	}
+	#icons li {
+		margin: 2px;
+		position: relative;
+		padding: 4px 0;
+		cursor: pointer;
+		float: left;
+		list-style: none;
+	}
+	#icons span.ui-icon {
+		float: left;
+		margin: 0 4px;
+	}
+	.fakewindowcontain .ui-widget-overlay {
+		position: absolute;
+	}
+	select {
+		width: 200px;
+	}
+
+	#dialog {display: none;}
+
+	/* Utility CSS */
+	p.acu-buttons a {
+		padding: .4em 1em .4em 20px;
+		text-decoration: none;
+		position: relative;
+	}
+	p.acu-buttons a span.ui-icon {
+		margin: 0 5px 0 0;
+		position: absolute;
+		left: .2em;
+		top: 50%;
+		margin-top: -8px;
+	}
+	.acu-alert .ui-widget-header.ui-dialog-titlebar {
+		border: 1px solid #666;
+		background: #666 url("jquery-ui-custom/images/ui-bg_diagonals-thick_20_666666_40x40.png") 50% 50% repeat;
+		color: #ffffff;
+		font-size: 1.2em;
+	}
+	.acu-error .ui-widget-header.ui-dialog-titlebar {
+		border: 1px solid #cd0a0a;
+		background: #b81900 url("jquery-ui-custom/images/ui-bg_diagonals-thick_18_b81900_40x40.png") 50% 50% repeat;
+		color: #ffffff;
+		font-size: 1.2em;
+	}
+	.acu-success .ui-widget-header.ui-dialog-titlebar {
+		border: 1px solid #579C3B;
+		background: #579C3B url("images/ui-bg_diagonals-thick_20_579C3B_40x40.png") 50% 50% repeat;
+		color: #ffffff;
+		font-size: 1.2em;
+	}
+	.acu-warning .ui-widget-header.ui-dialog-titlebar {
+		border: 1px solid #E7BE1C;
+		background: #E7BE1C url("images/ui-bg_diagonals-thick_20_E7BE1C_40x40.png") 50% 50% repeat;
+		color: #ffffff;
+		font-size: 1.2em;
+	}
