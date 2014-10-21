@@ -1,4 +1,4 @@
-Pseudopop
+ACU
 
 This will be the home of a widget to create "in page" modals simulating alert() or confirm() windows. So it's really two widgets, packaged into one.
 
