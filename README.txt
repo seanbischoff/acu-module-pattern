@@ -4,6 +4,8 @@ This will be the home of a widget to create "in page" modals simulating alert() 
 
 There are pros and cons to doing this! Be sure you read the README and understand the Impact of such a switch. Really. Your coding pattern must be modified to support these. If you still want to switch, continue with the Instructions.
 
+This version of the alertConfirmUtil uses the Module Pattern in order to facilitate "private" properties and methods using closures.
+
 Requirements:
 ---------------------
 My original widget was based on the now retired YUI library (2.x).
