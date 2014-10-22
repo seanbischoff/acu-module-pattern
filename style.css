@@ -35,12 +35,14 @@
 	#dialog {display: none;}
 
 	/* Utility CSS */
-	p.acu-buttons a {
+	div.acu-buttons a {
 		padding: .4em 1em .4em 20px;
 		text-decoration: none;
 		position: relative;
+		display: inline-block;
+		margin-top:20px;
 	}
-	p.acu-buttons a span.ui-icon {
+	div.acu-buttons a span.ui-icon {
 		margin: 0 5px 0 0;
 		position: absolute;
 		left: .2em;
@@ -71,3 +73,14 @@
 		color: #ffffff;
 		font-size: 1.2em;
 	}
+
+	.snippet {
+		margin:20px 0;
+		padding:20px;
+		border:1px solid #A6CCD2;
+		background: #EBF1F1;
+		font-size:1.2em;
+	}
+
+	.snippet .js { color: #268BD2; font-weight:bold;}
+	.snippet .str  { color: #269186;}

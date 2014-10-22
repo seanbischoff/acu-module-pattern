@@ -9,9 +9,8 @@ var acu = (function () {
 	_defaultNoHandler = function(){
 		console.log("No handler not configured, do nothing");
 	};
-	
-	return {
-		initACUDialog : function(config){
+
+	initACUDialog = function(config){
 
 			var acuClass = "acu-attention";
 			var acuButtons = [
@@ -34,14 +33,14 @@ var acu = (function () {
 
 			} else {
 				acuBody = config.msg;
-				acuTitle = config.result;
-				if(config.result.toLowerCase() == "error"){
+				acuTitle = config.type;
+				if(config.type.toLowerCase() == "error"){
 					acuClass = "acu-error";
-				} else if(config.result.toLowerCase() == "success"){
+				} else if(config.type.toLowerCase() == "success"){
 					acuClass = "acu-success";
-				} else if(config.result.toLowerCase() == "warning"){
+				} else if(config.type.toLowerCase() == "warning"){
 					acuClass = "acu-warning";
-				} else if(config.result.toLowerCase() == "confirm"){
+				} else if(config.type.toLowerCase() == "confirm"){
 					//me = this;
 					//me._yesHandler = (config.yesHandler != undefined) ? config.yesHandler : defaultYesHandler;
 					//me._noHandler = (config.noHandler != undefined) ? config.noHandler : defaultNoHandler;
@@ -83,10 +82,21 @@ var acu = (function () {
 				},
 				buttons: acuButtons
 			});
-			$( "#dialog" ).dialog("option","title", acuTitle );
+			$( "#dialog" ).dialog("option","title", acuTitle );//TODO - force 1st character toUpperCase in case value received is all lowercase.
 			$( "#dialog" ).html( acuBody );
 			$( "#dialog" ).dialog( "open" );
 		}
+	
+	return {
+
+		alert: function(config){
+			initACUDialog(config);
+		},
+		confirm: function(config){
+			initACUDialog(config);
+		},
+
+		
 	}
 
 	
