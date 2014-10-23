@@ -82,7 +82,7 @@ var acu = (function () {
 				},
 				buttons: acuButtons
 			});
-			$( "#dialog" ).dialog("option","title", acuTitle );//TODO - force 1st character toUpperCase in case value received is all lowercase.
+			$( "#dialog" ).dialog("option","title", acuTitle );//TODO - force 1st character toUpperCase, in case value received is all lowercase.
 			$( "#dialog" ).html( acuBody );
 			$( "#dialog" ).dialog( "open" );
 		}
